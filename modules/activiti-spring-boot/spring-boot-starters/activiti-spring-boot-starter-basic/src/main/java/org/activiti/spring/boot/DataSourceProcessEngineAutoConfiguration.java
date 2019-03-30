@@ -12,10 +12,6 @@
  */
 package org.activiti.spring.boot;
 
-import java.io.IOException;
-
-import javax.sql.DataSource;
-
 import org.activiti.spring.SpringAsyncExecutor;
 import org.activiti.spring.SpringProcessEngineConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
@@ -28,6 +24,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.PlatformTransactionManager;
 
+import javax.sql.DataSource;
+import java.io.IOException;
+
 /**
  * @author Joram Barrez
  * @author Josh Long
@@ -37,7 +36,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 public class DataSourceProcessEngineAutoConfiguration {
 
   @Configuration
-  @ConditionalOnMissingClass(name= "javax.persistence.EntityManagerFactory")
+  @ConditionalOnMissingClass(value= "javax.persistence.EntityManagerFactory")
   @EnableConfigurationProperties(ActivitiProperties.class)
   public static class DataSourceProcessEngineConfiguration extends AbstractProcessEngineAutoConfiguration {
 
